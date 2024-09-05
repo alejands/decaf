@@ -386,6 +386,9 @@ class AnalysisProcessor(processor.ProcessorABC):
         get_ele_trig_weight      = self._corrections['get_ele_trig_weight']
         get_ele_reco_sf_below20  = self._corrections['get_ele_reco_sf_below20']
         get_ele_reco_sf_above20  = self._corrections['get_ele_reco_sf_above20']
+        get_pho_loose_id_sf      = self._corrections['get_pho_loose_id_sf']
+        get_pho_tight_id_sf      = self._corrections['get_pho_tight_id_sf']
+        get_pho_trig_weight      = self._corrections['get_pho_trig_weight']
         get_mu_loose_id_sf       = self._corrections['get_mu_loose_id_sf']
         get_mu_tight_id_sf       = self._corrections['get_mu_tight_id_sf']
         get_mu_loose_iso_sf      = self._corrections['get_mu_loose_iso_sf']
@@ -513,7 +516,7 @@ class AnalysisProcessor(processor.ProcessorABC):
         e_nloose = ak.num(e_loose, axis=1)
         e_ntight = ak.num(e_tight, axis=1)
         leading_e = ak.firsts(e_tight)
-        ele_pairs = ak.combinations(ele_loose, 2)
+        ele_pairs = ak.combinations(e_loose, 2)
         diele = ele_pairs["0"]+ele_pairs["1"]
         diele['T'] = ak.zip(
             {
